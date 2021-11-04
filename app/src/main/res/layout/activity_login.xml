@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity"
+    android:layout_margin="15dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="25dp"
+        android:textColor="@color/purple_500"
+        android:layout_marginBottom="5dp"
+        android:layout_above="@id/emaillogin"
+        android:id="@+id/txtEmail"
+        />
+    <TextView
+        android:id="@+id/txtPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:layout_below="@id/emaillogin"
+        android:textSize="25dp"
+        android:textColor="@color/purple_500"
+        android:layout_marginBottom="5dp"
+        />
+    <EditText
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="abc@gmail.com"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/emaillogin"/>
+
+    <EditText
+
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPass"
+        android:hint="Password"
+        android:inputType="textPassword" />
+    <LinearLayout
+        android:layout_below="@id/password"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:layout_marginEnd="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/loginbtn"
+            android:textSize="25dp"
+            />
+        <Button
+            android:layout_marginStart="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:id="@+id/regbtn"
+            android:textSize="25dp"
+            />
+    </LinearLayout>
+
+</RelativeLayout>
