@@ -1,0 +1,85 @@
+﻿@model PagedList.PagedList<Lib.Entities.TaiKhoan>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Admin Account";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-5">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Admin List</h4>
+                    </div>
+                    <div class="col-md-6 text-right"> @Html.ActionLink("Create New", "Create")</div>
+                </div>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    <p class="text-right search">
+                        @Html.TextBox("SearchString", "", new { placeholder = "Search by Fullname or Email" })
+                        <input type="submit" value="Search" class="btn btn-default" />
+                    </p>}
+                <table class="table text-center">
+                    <tr>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Pass
+                        </th>
+                        <th>
+                            Họ Tên
+                        </th>
+                        <th>
+                            Loại
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                <tr>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pass)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdLoai)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.IdTK }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.IdTK }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.IdTK })
+                    </td>
+                </tr>
+                    }
+
+
+                </table>
+                <hr />
+                <div class="main-pagination text-right">
+                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    <span>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</span>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+    </section>
+    <!-- /.content -->

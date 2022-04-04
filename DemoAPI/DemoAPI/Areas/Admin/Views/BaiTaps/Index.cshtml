@@ -1,0 +1,97 @@
+﻿@model PagedList.PagedList<Lib.Entities.BaiTap>
+@using PagedList;
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{ ViewBag.Title = "Exercises";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; }
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-5">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Exercises List</h4>
+                    </div>
+                    <div class="col-md-6 text-right"> @Html.ActionLink("Create New", "Create")</div>
+                </div>
+            </div>
+            <div class="card-body px-5">
+                @using (Html.BeginForm())
+                {
+                    <p class="text-right search">
+                        @Html.TextBox("SearchString", "", new { placeholder = "Search by Exercise" })
+                        <input type="submit" value="Search" class="btn btn-default" />
+                    </p>}
+                <table class="table text-center">
+                    <tr>
+                        <th>
+                            Loại
+                        </th>
+                        <th>
+                            Tên Bài Tập
+                        </th>
+                        <th>
+                            Hình
+                        </th>
+                        <th>
+                            Nội Dung
+                        </th>
+                        <th>
+                            Số Hiệp
+                        </th>
+                        <th>
+                            Số Lần Tập
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdLoai)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenBaiTap)
+                            </td>
+                            <td>
+                                <img src=@Html.DisplayFor(modelItem => item.Hinh) alt="hinh" height="150" />
+                            </td>
+                            <td width="300px" style="text-align:justify">
+                                @Html.DisplayFor(modelItem => item.NoiDung)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SoHiep)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SoLanTap)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.IdBT }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.IdBT }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.IdBT })
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <hr />
+                <div class="main-pagination text-right">
+                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    <span>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</span>
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

@@ -1,0 +1,83 @@
+﻿@model PagedList.PagedList<Lib.Entities.ThucDon>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-5">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Food Menu</h4>
+                    </div>
+                    <div class="col-md-6 text-right">@Html.ActionLink("Create New", "Create")</div>
+                </div>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    <p class="text-right search">
+                        @Html.TextBox("SearchString", "", new { placeholder = "Search By name" })
+                        <input type="submit" value="Search" class="btn btn-default" />
+                    </p>}
+                <table class="table text-center">
+                    <tr>
+                        <th>
+                            Loại
+                        </th>
+                        <th>
+                            Tên Món Ăn
+                        </th>
+                        <th>
+                            Hình
+                        </th>
+                        <th>
+                            Calo
+                        </th>
+                       
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdLoai)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenMonAn)
+                            </td>
+                            <td>
+                                <img src=@Html.DisplayFor(modelItem => item.Hinh) alt="hinh" height="150" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.calo)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.IdTD }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.IdTD }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.IdTD })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                <hr />
+                <div class="main-pagination text-right">
+                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    <span>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</span>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>

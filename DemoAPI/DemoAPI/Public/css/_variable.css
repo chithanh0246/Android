@@ -1,0 +1,16 @@
+﻿@import url('_variable.css');
+:root {
+    --primary-color: #f78c1f;
+    --text-neon: 0 0 4px var(--primary-color), 0 0 11px var(--primary-color), 0 0 19px var(--primary-color), 0 0 40px var(--primary-color), 0 0 80px var(--primary-color), 0 0 90px var(--primary-color), 0 0 100px var(--primary-color), 0 0 150px var(--primary-color);
+}
+
+@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: var(--text-neon);
+        animation: flicker 1.5s infinite alternate;
+    }
+
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}

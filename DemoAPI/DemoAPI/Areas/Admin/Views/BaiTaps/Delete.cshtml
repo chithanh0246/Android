@@ -1,0 +1,86 @@
+﻿@model Lib.Entities.BaiTap
+
+@{ ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; }
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-5">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Delete Exercise</h4>
+                    </div>
+                    <div class="col-md-6 text-right">@Html.ActionLink("Back to List", "Index")</div>
+                </div>
+            </div>
+            <div class="card-body px-5">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IdLoai)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IdLoai)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TenBaiTap)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenBaiTap)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Hinh)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Hinh)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NoiDung)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NoiDung)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SoHiep)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SoHiep)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SoLanTap)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SoLanTap)
+                    </dd>
+
+                </dl>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" />
+
+                    </div>}
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

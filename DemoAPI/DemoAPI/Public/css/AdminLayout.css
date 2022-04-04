@@ -1,0 +1,84 @@
+﻿.main-sidebar .logo-admin {
+    color: white;
+    text-shadow: var(--text-neon);
+    animation: flicker 1.5s infinite alternate;
+}
+
+.sidebar-dark-primary{
+    background-color: #000;
+    color: #fff;
+}
+
+.content-wrapper a {
+    color: var(--primary-color);
+    border-bottom: 1px solid transparent;
+    transition: 0.25s all;
+}
+
+    .content-wrapper a:hover {
+        color: var(--primary-color);
+        border-bottom: 1px solid var(--primary-color);
+        transition: 0.25s all;
+    }
+
+.content-wrapper .table td {
+    vertical-align: middle;
+}
+
+.content-wrapper h4 {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.content-wrapper dd{
+    margin-bottom: 1.5rem;
+}
+
+.content-wrapper .admin-main-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 10%;
+}
+
+
+.content-wrapper .admin-main-page h1{
+    color: var(--primary-color);
+    font-size: 80px;
+    font-weight: bold;
+}
+
+
+.content-wrapper .admin-main-page p {
+    color: var(--primary-color);
+    font-size: 30px;
+}
+
+
+.btn-default{
+    border: 2px solid var(--primary-color);
+    background-color: #fff;
+    color: var(--primary-color);
+}
+
+.btn-default:hover{
+    border-color: #fff;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.search input[name="SearchString"] {
+    margin-right: 10px;
+    padding: .375rem .75rem;
+}
+.search input[name="SearchString"]:focus {
+    border: 2px solid var(--primary-color);
+    outline: 0;
+}
+
+.search input[name="SearchString"]::placeholder {
+    font-size: 15px;
+}
