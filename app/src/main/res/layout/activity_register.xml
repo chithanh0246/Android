@@ -1,42 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bgmau"
     tools:context=".RegisterActivity">
-    <EditText
+   <ImageButton
+       android:id="@+id/imgBack"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="@drawable/iconback"></ImageButton>
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/txtfullname"
+       android:text="Full Name"
+       android:layout_above="@id/name"
+       android:textColor="@color/purple_500"
+       android:textSize="25dp"/>
+ <TextView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+  android:id="@+id/txtemil"
+     android:text="Email"
+     android:layout_above="@id/email"
+     android:textColor="@color/purple_500"
+     android:textSize="25dp"/>
+ <TextView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:id="@+id/txtpass"
+     android:layout_centerInParent="true"
+     android:textSize="25dp"
+     android:textColor="@color/purple_500"
+     android:text="Password"/>
+ <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25dp"
         android:id="@+id/name"
-        android:hint="Name"/>
+     android:layout_above="@id/txtemil"
+        android:hint="Nguyen Van A"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25dp"
+        android:layout_above="@id/txtpass"
         android:id="@+id/email"
-        android:hint="Email"
-        android:inputType="textEmailAddress"/>
+        android:hint="ABC@gmail.com"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
     <EditText
+        android:layout_below="@id/txtpass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25dp"
         android:id="@+id/password"
         android:hint="Password"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
+        android:textColor="#F14CED"
+        android:backgroundTint="#FB3F04"
+        android:layout_below="@id/password"
+        android:layout_centerInParent="true"
         android:id="@+id/registerbtn"/>
     <TextView
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:id="@+id/status"
         android:textSize="25dp"
         android:layout_marginTop="20dp"
-        android:text="Register"/>
-</LinearLayout>
+        android:text="Register"
+        android:textColor="@color/black"
+       />
+</RelativeLayout>

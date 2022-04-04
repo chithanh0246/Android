@@ -17,13 +17,14 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     Button calculatebmi;
-    TextView currentage, currentweight , currentheight;
+    TextView currentage, currentweight , currentheight,txtUser;
     ImageView decrementweight , incrementweight ,decrementage , incrementage;
     SeekBar seekbarforheight;
 
+
     RelativeLayout mmale , mfemale;
 
-    int intweight=50;
+    int intweight=55;
     int intage=21;
     int currentprogress;
     String mintprogress="170";
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
+        txtUser = findViewById(R.id.user);
         calculatebmi = findViewById(R.id.calculatebmi);
         currentage = findViewById(R.id.currentage);
         currentweight = findViewById(R.id.currentweight);
@@ -51,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
         seekbarforheight = findViewById(R.id.seekbarforheight);
         mmale=findViewById(R.id.male);
         mfemale=findViewById(R.id.female);
+        Bundle bundleReceive=getIntent().getExtras();
+        if(bundleReceive != null){
+            TaiKhoan user= (TaiKhoan) bundleReceive.get("object_user");
+            if(user != null){
+                txtUser.setText(user.toString());
+            }
+        }
 
 
         mmale.setOnClickListener(new View.OnClickListener() {

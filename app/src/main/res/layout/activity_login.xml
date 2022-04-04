@@ -5,36 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".LoginActivity"
     android:layout_margin="15dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_centerInParent="true"
+        android:layout_above="@id/txtEmail"
+        android:background="@drawable/bgbmi" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
         android:textSize="25dp"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/black"
         android:layout_marginBottom="5dp"
         android:layout_above="@id/emaillogin"
         android:id="@+id/txtEmail"
         />
+
     <TextView
         android:id="@+id/txtPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
         android:layout_below="@id/emaillogin"
-        android:textSize="25dp"
-        android:textColor="@color/purple_500"
         android:layout_marginBottom="5dp"
-        />
+
+        android:text="Password"
+        android:textColor="@color/black"
+        android:textSize="25dp" />
+
     <EditText
-        android:layout_centerInParent="true"
+        android:id="@+id/emaillogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="abc@gmail.com"
+        android:layout_centerInParent="true"
         android:layout_marginBottom="5dp"
-        android:id="@+id/emaillogin"/>
+        android:hint="abc@gmail.com"
+        android:inputType="textEmailAddress" />
 
     <EditText
 
@@ -58,6 +69,7 @@
             android:layout_height="wrap_content"
             android:text="Login"
             android:id="@+id/loginbtn"
+            android:backgroundTint="@color/teal_200"
             android:textSize="25dp"
             />
         <Button
@@ -65,6 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
+            android:backgroundTint="@color/teal_700"
             android:id="@+id/regbtn"
             android:textSize="25dp"
             />

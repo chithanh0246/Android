@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1e1d1d"
+    android:background="@drawable/body2"
     tools:context=".bmiacvtivity">
 
     <ImageView
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@drawable/cardbackground"
+
         android:padding="20dp">
 
 
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="50"
-            android:textColor="@color/white"
+            android:textColor="#00BCD4"
             android:textSize="50sp"
             android:textStyle="bold">
 
@@ -49,7 +49,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:text="Gender"
-            android:textColor="@color/white"
+            android:textColor="#00BCD4"
             android:textSize="17sp"
             android:textStyle="bold">
 
@@ -63,7 +63,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:text="YOUR BMI CATEGORY IS"
-            android:textColor="@color/white"
+            android:textColor="#00BCD4"
             android:textSize="25sp"
             android:textStyle="bold">
 
@@ -83,7 +83,7 @@
         android:layout_marginBottom="15dp"
         android:background="@drawable/buttonbackground"
         android:text="ReCalculator Your BMI"
-        android:textColor="@color/white"
+        android:textColor="#009688"
         android:textSize="15sp">
 
     </android.widget.Button>

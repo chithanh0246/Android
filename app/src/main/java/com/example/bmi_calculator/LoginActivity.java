@@ -2,28 +2,28 @@ package com.example.bmi_calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.bmi_calculator.Connection.ConnectionClass;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     EditText emaillogin , passwordlogin;
     Button loginbtn,regbtn;
-    Connection con ;
+
+    List<TaiKhoan> mList;
+    TaiKhoan mUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,98 +33,57 @@ public class LoginActivity extends AppCompatActivity {
         passwordlogin  =(EditText) findViewById(R.id.password);
         loginbtn = (Button) findViewById(R.id.loginbtn);
         regbtn =(Button) findViewById(R.id.regbtn);
+        mList=new ArrayList<>();
+        getListUsers();
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new LoginActivity.checkLogin().execute("");
+                clickLogin();
             }
         });
-        regbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
     }
 
-    public class  checkLogin extends AsyncTask<String,String,String> {
-        String z = null;
-        Boolean isSuccess=false;
-        @Override
-        protected void onPreExecute() {
+    private void clickLogin() {
+        String email = emaillogin.getText().toString().trim();
+        String pass = passwordlogin.getText().toString().trim();
+        if(mList==null||mList.isEmpty()){
+            return;
 
         }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            con=connectionClass(ConnectionClass.un.toString(),ConnectionClass.pass.toString(),ConnectionClass.db.toString(),ConnectionClass.ip.toString());
-            if(con==null){
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(LoginActivity.this,"Check Internet Connection",Toast.LENGTH_LONG).show();
-                    }
-                });
-                z="On Internet Connection";
-            }
-            else {
-                try {
-                    String sql = "select * from Account where Email='"+ emaillogin.getText() +"'and Pass='"+ passwordlogin.getText() +"'";
-                    Statement stmt = con.createStatement();
-                    ResultSet rs = stmt.executeQuery(sql);
-                    if (rs.next()) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_LONG).show();
-                            }
-                        });
-                        z="Success";
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(LoginActivity.this, "Check email or password", Toast.LENGTH_LONG).show();
-                            }
-                        });
-                        emaillogin.setText("");
-                        passwordlogin.setText("");
-                    }
-                } catch (Exception e) {
-                    isSuccess = false;
-                    Log.e("SQL Error:", e.getMessage());
-
+        boolean isHasUser=false;
+        for(TaiKhoan user:mList){
+                if(email.equals(user.getEmail()) && pass.equals(user.getPass())){
+                    isHasUser=true;
+                    mUser=user;
+                    break;
                 }
-            }
-            return z;
+        if(isHasUser==true){
+            Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+            Bundle bundle= new Bundle();
+            bundle.putSerializable("object_user",mUser);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }else{
+            Toast.makeText(LoginActivity.this,"Email or Password invalid",Toast.LENGTH_SHORT).show();
+
+        }
         }
     }
 
-    @SuppressLint("NewApi")
-    public Connection connectionClass(String user,String pass,String database,String server){
-        StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        Connection connection=null;
-        String connectionUrl = null;
-        try {
-            Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            connectionUrl="jdbc:jtds:sqlserver://"+server+"/"+database+";user="+user+";password="+pass+";";
-            connection= DriverManager.getConnection(connectionUrl);
+    private void getListUsers(){
+        ApiService.apiServices.getUser().enqueue(new Callback<TaiKhoan>() {
+            @Override
+            public void onResponse(Call<TaiKhoan> call, Response<TaiKhoan> response) {
+                mList= (List<TaiKhoan>) response.body();
+                Log.e("List Users",mList.size()+"");
+            }
 
-        }catch (Exception e){
-            Log.e("SQL connect Error:",e.getMessage());
-        }
-        return connection;
+            @Override
+            public void onFailure(Call<TaiKhoan> call, Throwable t) {
+                Toast.makeText(LoginActivity.this,"Call api error",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

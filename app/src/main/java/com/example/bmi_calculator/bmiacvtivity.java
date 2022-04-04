@@ -68,34 +68,45 @@ public class bmiacvtivity extends AppCompatActivity {
 
         if(intbmi<16)
         {
-            bmicategory.setText("dmm gầy vãi lz hốc nhiều vô");
+            bmicategory.setText("Gầy độ 3");
             mbackground.setBackgroundColor(Color.RED);
             imageView.setImageResource(R.drawable.crosss);
         }
         else if(intbmi<16.9 && intbmi>16)
         {
-            bmicategory.setText("gầy");
+            bmicategory.setText("Gầy độ 2");
             mbackground.setBackgroundColor(Color.RED);
             imageView.setImageResource(R.drawable.warning);
         }else if(intbmi<18.4 && intbmi>17)
         {
-            bmicategory.setText("vẫn hơi gầy");
+            bmicategory.setText("Gầy độ 1");
             mbackground.setBackgroundColor(Color.RED);
             imageView.setImageResource(R.drawable.warning);
         }else if(intbmi<25 && intbmi>18.4)
         {
-            bmicategory.setText("Bình thường");
-            mbackground.setBackgroundColor(Color.YELLOW);
+            bmicategory.setText("Cân đối");
+            mbackground.setBackgroundColor(Color.GREEN);
             imageView.setImageResource(R.drawable.ok);
         }else if(intbmi<29.4 && intbmi>25)
         {
-            bmicategory.setText("dmm hốc ít thôi sắp thành con lợn rồi");
+            bmicategory.setText("Thừa cân ");
             mbackground.setBackgroundColor(Color.RED);
             imageView.setImageResource(R.drawable.crosss);
         }
-        else
+        else if(intbmi<35 && intbmi>30)
         {
-            bmicategory.setText("Hết thuốc chữa");
+            bmicategory.setText("Béo phì độ 1");
+            mbackground.setBackgroundColor(Color.RED);
+            imageView.setImageResource(R.drawable.warning);
+        }
+        else if(intbmi<40 && intbmi>35)
+        {
+            bmicategory.setText("Béo phì độ 2");
+            mbackground.setBackgroundColor(Color.RED);
+            imageView.setImageResource(R.drawable.warning);
+        }
+        else{
+            bmicategory.setText("Béo phì độ 3");
             mbackground.setBackgroundColor(Color.RED);
             imageView.setImageResource(R.drawable.warning);
         }
